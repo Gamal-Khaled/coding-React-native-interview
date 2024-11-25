@@ -1,24 +1,35 @@
 import React, { useCallback, useState } from 'react';
-import {
-  FlatList,
-  ListRenderItemInfo,
-  StyleSheet,
-} from 'react-native';
+import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 import Movie from '../../types/Movie';
 import theme from '../../theme/theme';
 import { spacing } from '../../types/spacing';
 import { MovieCard, SearchBar, Text } from '../../components';
+import NavigationRoutes from '../../navigation/NavigationRoutes';
 import useSearchMoviesQuery from '../../apis/useSearchMoviesQuery';
+import { RootStackParamList } from '../../navigation/RootStackNavigator';
+
+type ScreenNavigation = NavigationProp<
+  RootStackParamList,
+  NavigationRoutes.MainTabNavigator
+>;
 
 const SearchMoviesScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { data, fetchNextPage, isLoading } = useSearchMoviesQuery(searchQuery);
+  const { navigate } = useNavigation<ScreenNavigation>();
 
   const renderMovie = useCallback(
     ({ item }: ListRenderItemInfo<Movie>) => (
-      <MovieCard movie={item} style={styles.movie} />
+      <MovieCard
+        movie={item}
+        style={styles.movie}
+        onPress={() =>
+          navigate(NavigationRoutes.MovieDetailsScreen, { movie: item })
+        }
+      />
     ),
     [],
   );
@@ -60,8 +71,8 @@ const styles = StyleSheet.create({
   },
   emptyMessage: {
     textAlign: 'center',
-    marginTop: spacing.big
-  }
+    marginTop: spacing.big,
+  },
 });
 
 export default SearchMoviesScreen;
