@@ -7,12 +7,11 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Text } from '../../components';
+import Movie from '../../types/Movie';
 import theme from '../../theme/theme';
 import { spacing } from '../../types/spacing';
+import { MovieCard, Text } from '../../components';
 import useTrendingQuery from '../../apis/useTrendingQuery';
-import MovieCard from '../../components/MovieCard';
-import Movie from '../../types/Movie';
 
 const HomeScreen = () => {
   const { data, fetchNextPage, isLoading } = useTrendingQuery();
