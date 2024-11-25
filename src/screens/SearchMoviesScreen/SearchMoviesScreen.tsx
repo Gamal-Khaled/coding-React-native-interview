@@ -1,6 +1,5 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
-  ActivityIndicator,
   FlatList,
   ListRenderItemInfo,
   StyleSheet,
@@ -10,11 +9,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Movie from '../../types/Movie';
 import theme from '../../theme/theme';
 import { spacing } from '../../types/spacing';
-import { MovieCard, Text } from '../../components';
-import useTrendingQuery from '../../apis/useTrendingQuery';
+import { MovieCard, SearchBar, Text } from '../../components';
+import useSearchMoviesQuery from '../../apis/useSearchMoviesQuery';
 
-const HomeScreen = () => {
-  const { data, fetchNextPage, isLoading } = useTrendingQuery();
+const SearchMoviesScreen = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const { data, fetchNextPage, isLoading } = useSearchMoviesQuery(searchQuery);
 
   const renderMovie = useCallback(
     ({ item }: ListRenderItemInfo<Movie>) => (
@@ -31,15 +31,15 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text variant="title" style={styles.title}>
-        Trending this week
-      </Text>
+      <SearchBar onSearch={setSearchQuery} />
       <FlatList
         data={data.pages}
         renderItem={renderMovie}
         onEndReached={fetchMore}
         keyExtractor={(_, i) => String(i)}
-        ListFooterComponent={<ActivityIndicator />}
+        ListEmptyComponent={
+          <Text style={styles.emptyMessage}>Enter movie name to search</Text>
+        }
       />
     </SafeAreaView>
   );
@@ -58,6 +58,10 @@ const styles = StyleSheet.create({
   movie: {
     marginBottom: spacing.base,
   },
+  emptyMessage: {
+    textAlign: 'center',
+    marginTop: spacing.big
+  }
 });
 
-export default HomeScreen;
+export default SearchMoviesScreen;

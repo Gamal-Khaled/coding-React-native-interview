@@ -1,6 +1,6 @@
 enum NavigationRoutes {
   HomeScreen = 'HomeScreen',
-  MoviesScreen = 'MoviesScreen',
+  SearchMoviesScreen = 'SearchMoviesScreen',
 }
 
 export default NavigationRoutes;

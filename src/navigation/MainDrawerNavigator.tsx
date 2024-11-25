@@ -3,13 +3,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import theme from '../theme/theme';
-import TempScreen from '../screens/TempScreen';
 import NavigationRoutes from './NavigationRoutes';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import { HomeScreen, SearchMoviesScreen } from '../screens';
 
 export type MainDrawerParamList = {
-  [NavigationRoutes.HomeScreen]: { screens: string[] };
-  [NavigationRoutes.MoviesScreen]: { screens: string[] };
+  [NavigationRoutes.HomeScreen]: undefined;
+  [NavigationRoutes.SearchMoviesScreen]: undefined;
 };
 
 const Drawer = createDrawerNavigator();
@@ -28,11 +27,12 @@ const MainDrawerNavigator = () => {
         <Drawer.Screen
           name={NavigationRoutes.HomeScreen}
           component={HomeScreen}
+          options={{ title: 'Home' }}
         />
         <Drawer.Screen
-          name={NavigationRoutes.MoviesScreen}
-          component={TempScreen}
-          initialParams={{ screens: [NavigationRoutes.HomeScreen] }}
+          name={NavigationRoutes.SearchMoviesScreen}
+          component={SearchMoviesScreen}
+          options={{ title: 'Search Movies' }}
         />
       </Drawer.Navigator>
     </NavigationContainer>
