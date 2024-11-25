@@ -1595,6 +1595,11 @@
     prompts "^2.4.2"
     semver "^7.5.2"
 
+"@react-native-masked-view/masked-view@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@react-native-masked-view/masked-view/-/masked-view-0.3.2.tgz#7064533a573e3539ec912f59c1f457371bf49dd9"
+  integrity sha512-XwuQoW7/GEgWRMovOQtX3A4PrXhyaZm0lVUiY8qJDvdngjLms9Cpdck6SmGAUNqQwcj2EadHC1HwL0bEyoa/SQ==
+
 "@react-native/assets-registry@0.76.3":
   version "0.76.3"
   resolved "https://registry.yarnpkg.com/@react-native/assets-registry/-/assets-registry-0.76.3.tgz#c31e91b6f60fed7b0bfc1af617e3a61218d1ec08"
@@ -1830,6 +1835,14 @@
   integrity sha512-b2ehNmgAfDziTd0EERm0C9JI9JH1kdRS4SNBWbKQOVPv23WG+5ExovwWet26sGtMabLJ5lxSE8Z2/fByfggjNQ==
   dependencies:
     nanoid "3.3.7"
+
+"@react-navigation/stack@^7.0.6":
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-7.0.6.tgz#34f9f19c4a46c4c67b8dedd4043889b93989a523"
+  integrity sha512-sU3LfE5VBCFiAXgnwHdm4hI3PKn1NfXi5B8ttTBduajIkse/RCOnrokK+1Z7CK3pmF4xyi4tGTtXJPCl62sQRA==
+  dependencies:
+    "@react-navigation/elements" "^2.1.1"
+    color "^4.2.3"
 
 "@sideway/address@^4.1.5":
   version "4.1.5"
