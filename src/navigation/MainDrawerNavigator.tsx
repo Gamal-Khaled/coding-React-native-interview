@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import theme from '../theme/theme';
@@ -15,27 +14,25 @@ const Drawer = createDrawerNavigator();
 
 const MainDrawerNavigator = () => {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        screenOptions={{
-          headerStyle: styles.header,
-          headerTitleStyle: styles.headerTitle,
-          headerTintColor: theme.font,
-          drawerStyle: styles.drawerStyle,
-          drawerLabelStyle: styles.drawerLabel,
-        }}>
-        <Drawer.Screen
-          name={NavigationRoutes.HomeScreen}
-          component={HomeScreen}
-          options={{ title: 'Home' }}
-        />
-        <Drawer.Screen
-          name={NavigationRoutes.SearchMoviesScreen}
-          component={SearchMoviesScreen}
-          options={{ title: 'Search Movies' }}
-        />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: styles.header,
+        headerTitleStyle: styles.headerTitle,
+        headerTintColor: theme.font,
+        drawerStyle: styles.drawerStyle,
+        drawerLabelStyle: styles.drawerLabel,
+      }}>
+      <Drawer.Screen
+        name={NavigationRoutes.HomeScreen}
+        component={HomeScreen}
+        options={{ title: 'Home' }}
+      />
+      <Drawer.Screen
+        name={NavigationRoutes.SearchMoviesScreen}
+        component={SearchMoviesScreen}
+        options={{ title: 'Search Movies' }}
+      />
+    </Drawer.Navigator>
   );
 };
 

@@ -25,23 +25,20 @@ const MovieCard = ({ movie, onPress, style }: Props) => {
   const [loadingImage, setLoadingImage] = useState(true);
 
   return (
-    <View style={[styles.container, style]}>
+    <TouchableOpacity onPress={onPress} style={[styles.container, style]}>
       <FastImage
         source={{
           uri: process.env.IMAGE_BASE_URL + imageSizeSmall + movie.poster_path,
         }}
         style={styles.thumbnail}
-        onLoadEnd={() => setLoadingImage(false)}
-      >
+        onLoadEnd={() => setLoadingImage(false)}>
         {loadingImage && (
           <ActivityIndicator color={theme.font} style={styles.imageLoading} />
         )}
       </FastImage>
       <View style={styles.content}>
         <View>
-          <TouchableOpacity onPress={onPress}>
-            <Text style={styles.title}>{movie.title ?? movie.name}</Text>
-          </TouchableOpacity>
+          <Text style={styles.title}>{movie.title ?? movie.name}</Text>
           <Text style={styles.date}>
             {movie.release_date ?? movie.first_air_date}
           </Text>
@@ -50,7 +47,7 @@ const MovieCard = ({ movie, onPress, style }: Props) => {
           {(movie.vote_average * 10).toFixed(2)}%
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -86,7 +83,6 @@ const styles = StyleSheet.create({
   average: {
     fontWeight: 'bold',
     fontSize: 28,
-    color: theme.font,
     textAlign: 'right',
   },
   genres: {
@@ -101,7 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   imageLoading: {
-    zIndex: -1
+    zIndex: -1,
   },
 });
 

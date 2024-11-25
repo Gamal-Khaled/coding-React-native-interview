@@ -1,14 +1,14 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import MainDrawerNavigator from './src/navigation/MainDrawerNavigator';
+import RootStackNavigator from './src/navigation/RootStackNavigator';
 
 const queryClient = new QueryClient();
 
 function App(): React.JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>
-      <MainDrawerNavigator />
+      <RootStackNavigator />
     </QueryClientProvider>
   );
 }

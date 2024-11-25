@@ -6,19 +6,34 @@ import {
   StyleSheet,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 import Movie from '../../types/Movie';
 import theme from '../../theme/theme';
 import { spacing } from '../../types/spacing';
 import { MovieCard, Text } from '../../components';
 import useTrendingQuery from '../../apis/useTrendingQuery';
+import NavigationRoutes from '../../navigation/NavigationRoutes';
+import { RootStackParamList } from '../../navigation/RootStackNavigator';
+
+type ScreenNavigation = NavigationProp<
+  RootStackParamList,
+  NavigationRoutes.MainTabNavigator
+>;
 
 const HomeScreen = () => {
+  const { navigate } = useNavigation<ScreenNavigation>();
   const { data, fetchNextPage, isLoading } = useTrendingQuery();
 
   const renderMovie = useCallback(
     ({ item }: ListRenderItemInfo<Movie>) => (
-      <MovieCard movie={item} style={styles.movie} />
+      <MovieCard
+        movie={item}
+        style={styles.movie}
+        onPress={() =>
+          navigate(NavigationRoutes.MovieDetailsScreen, { movie: item })
+        }
+      />
     ),
     [],
   );
